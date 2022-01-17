@@ -6,7 +6,8 @@
  * --> Attention à bien fermer votre fichier si vous utilisez fopen()
  */
 // TODO Votre code ici.
-
+$lorem = "Lorem ipsum dolor sit amet, consectetur adipisicing elit.";
+file_put_contents('lorem.txt', $lorem);
 
 /**
  * 3. Créez un tableau contenant au moins 10 chaînes de caractère au choix.
@@ -15,20 +16,42 @@
  * --> Attention: les chaînes de caractères doivent s'ajouter à la suite du contenu déjà existant, pas d'écrasement.
  */
 // TODO Votre code ici
+$array = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+];
 
+$file = fopen('lorem.txt', "a+b");
+foreach ($array as $value) {
+    fwrite($file, $value);
+}
 
+fclose($file);
+
+echo file_get_contents('lorem.txt') . "<br>";
 /**
  * 5. Trouvez une solution pour afficher à l'aide d'un simple echo l'extension du fichier index.php
  */
 // TODO Votre code ici
-
+$extension = pathinfo('index.php');
+echo $extension["extension"] . "<br>";
 
 
 /**
  * 6. Testez si le fichier 'toto' existe, sil n'existe pas, afficher un texte distant que ce fichier n'existe pas !
  */
 // TODO Votre code ici.
-
+if (!file_exists('toto.txt')) {
+    echo "le fichier n'existe pas <br>";
+}
 
 /**
  * Super bonus.
