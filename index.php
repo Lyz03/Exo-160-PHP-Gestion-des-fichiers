@@ -56,6 +56,28 @@ if (!file_exists('toto.txt')) {
 /**
  * Super bonus.
  * Parcourrez votre fichier, à chaque fois que vous rencontrez le caractère 'a', remplacez le par le caractère '@'
- * Attention, il y a un piège avec les pointeurs, et une manière très simple de procéder... réfléchissez...
+ * Attention, il y a un piège avec les pointeurs et une manière très simple de procéder... réfléchissez...
  */
 // TODO Votre code ici si vous faites le bonus.
+
+$len = strlen(file_get_contents('lorem.txt'));
+
+// read the file and put in newLoremContent the new content (change a to @)
+$file = fopen('lorem.txt', "r+b");
+$newLoremContent = '';
+for ($i = 0; $i < $len; $i++) {
+    $char = fgetc($file);
+    if ($char === 'a') {
+        $newLoremContent .= '@';
+    } else {
+        $newLoremContent .= $char;
+    }
+}
+fclose($file);
+
+// write in the file the new content
+$file = fopen('lorem.txt', "w+b");
+
+fwrite($file, $newLoremContent);
+echo file_get_contents('lorem.txt');
+fclose($file);
